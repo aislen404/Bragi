@@ -1,0 +1,44 @@
+body{
+    background-color: #8eadc5;
+}
+
+body.write{
+    background-color: #8de1bd;
+}
+
+body.read{
+    background-color: #577a76;
+}
+body.scan{
+    background-color: #349Ac3;
+}
+body.register{
+    background-color: #DD44FF;
+}
+
+
+
+button{
+    background-color: #7fba67;
+    color: #ffffff;
+    border: none;
+    width: 100%;
+    padding: 30px;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+#zona-info{
+    width: 100%;
+    background-color: #7fba67;
+    margin-top: 10px;
+    min-height: 300px;
+    display: block;
+}
+
+#zona-record.noActive{
+    visibility: hidden;
+}
+#zona-record.active{
+    visibility: visible;
+}
