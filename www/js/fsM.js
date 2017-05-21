@@ -7,17 +7,17 @@
 var fsm = {
     writeToFile: function(fileName, data) {
         "use strict";
-        console.log(data);
         data = JSON.stringify(data, null, '\t');
+        console.log('writeToFile : \n'+data);
         window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
             directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {
                 fileEntry.createWriter(function (fileWriter) {
                     fileWriter.onwriteend = function (e) {
-                        // for real-world usage, you might consider passing a success callback
+                        // TODO: for real-world usage, you might consider passing a success callback
                         console.log('Write of file "' + fileName + '"" completed.');
                     };
                     fileWriter.onerror = function (e) {
-                        // you could hook this up with our global error handler, or pass in an error callback
+                        // TODO: hook this up with our global error handler, or pass in an error callback
                         console.log('Write failed: ' + e.toString());
                     };
                     var blob = new Blob([data], { type: 'text/plain' });
@@ -50,12 +50,12 @@ var fsm = {
     },
     readFromFile: function(fileName, callback) {
         "use strict";
-        console.log('readFromFile');
         var pathToFile = cordova.file.dataDirectory + fileName;
         window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
             fileEntry.file(function (file) {
                 var reader = new FileReader();
                 reader.onloadend = function (e) {
+                    console.log('readFromFile : \n'+JSON.parse(this.result));
                     callback(JSON.parse(this.result));
                 };
                 reader.readAsText(file);

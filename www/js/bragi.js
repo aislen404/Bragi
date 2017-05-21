@@ -1,3 +1,12 @@
+/**
+ * Created by Aislen404 on 20/5/17.
+ * Eloquently Services:
+ * 		- Scanning Bar & QR Codes
+ * 		- Retrieving Information
+ * 			- BNE : National Library of Spain
+ */
+
+
 var bragi = {
 	model_backup : {
 		'registros': [{

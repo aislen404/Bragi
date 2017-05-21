@@ -22,8 +22,9 @@ button{
     background-color: #7fba67;
     color: #ffffff;
     border: none;
-    width: 100%;
-    padding: 30px;
+    width: 64px;
+    height: 64px;
+    padding: 5px;
     font-size: 1em;
     margin-top: 10px;
 }
