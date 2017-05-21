@@ -6,12 +6,12 @@
 
 var frbm = {
     firebaseConfig: {
-        apiKey: 'AIzaSyDCm4SzFeqV-u43itxCIqLEDXdCcgGv-Ec',
-        authDomain: 'bragi-93b4c.firebaseapp.com',
-        databaseURL: 'https://bragi-93b4c.firebaseio.com',
-        projectId: 'bragi-93b4c',
-        storageBucket: 'bragi-93b4c.appspot.com',
-        messagingSenderId: '530505084751'
+        apiKey: '',
+        authDomain: '',
+        databaseURL: '',
+        projectId: '',
+        storageBucket: '',
+        messagingSenderId: ''
     },
     initFireBase: function (){
         var resp_provy = firebase.initializeApp(this.firebaseConfig);
@@ -19,7 +19,7 @@ var frbm = {
     },
     saveInFirebase: function(data) {
         var ref = firebase.storage().ref('model.json');
-        ref.putString(JSON.stringify(app.model));
-        console.log('dasdasdasdasdasdad '+JSON.stringify(data));
+        ref.putString(JSON.stringify(data));
+        console.log('Firebase Sending:\n '+JSON.stringify(data));
     }
 };
