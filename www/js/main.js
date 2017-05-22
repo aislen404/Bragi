@@ -14,7 +14,6 @@ var app={
 
         this.initButtons();
         this.initFastClick();
-        this.paintRecords();
         this.readingFile();
 
     },
@@ -52,7 +51,7 @@ var app={
 
         console.log('reportingArea');
 
-        var zona = document.getElementById('zona-info');
+        var zona = document.getElementById('info-area');
 
         zona.innerHTML = data;
     },
@@ -90,7 +89,7 @@ var app={
 
         console.log('writingFile');
 
-        fsm.writeToFile('data.json', app.blank_model);
+        fsm.writeToFile(app.blank_model);
         app.reportingArea('writed out !!');
         app.model=app.blank_model;
         app.paintRecords();
@@ -101,7 +100,7 @@ var app={
 
         console.log('readingFile');
 
-        fsm.readFromFile('data.json', function (data) {
+        fsm.readFromFile( function (data) {
             app.model=data;
             app.reportingArea('Data Loaded !!');
             app.paintRecords();
@@ -147,7 +146,7 @@ var app={
         app.buttonsArea();
         app.model.push(app.provi);
         app.provi=[];
-        fsm.writeToFile('data.json',app.model);
+        fsm.writeToFile(app.model);
         app.paintRecords();
     },
 

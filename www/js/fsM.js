@@ -5,11 +5,15 @@
  */
 
 var fsm = {
-    writeToFile: function(fileName, data) {
+    where : cordova.file.dataDirectory,
+    what : 'data.json',
+    writeToFile: function(data) {
         "use strict";
+        var fileName = this.what;
+
         data = JSON.stringify(data, null, '\t');
         console.log('writeToFile : \n'+data);
-        window.resolveLocalFileSystemURL(cordova.file.dataDirectory, function (directoryEntry) {
+        window.resolveLocalFileSystemURL(this.where, function (directoryEntry) {
             directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {
                 fileEntry.createWriter(function (fileWriter) {
                     fileWriter.onwriteend = function (e) {
@@ -48,9 +52,12 @@ var fsm = {
             }, fsm.errorHandler.bind(null, fileName));
         }, fsm.errorHandler.bind(null, fileName));
     },
-    readFromFile: function(fileName, callback) {
+    readFromFile: function(callback) {
         "use strict";
-        var pathToFile = cordova.file.dataDirectory + fileName;
+
+        var fileName = this.what;
+        var pathToFile = this.where + fileName;
+        console.log('hola --> ' + cordova.file.dataDirectory);
         window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
             fileEntry.file(function (file) {
                 var reader = new FileReader();

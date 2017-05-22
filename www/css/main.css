@@ -17,22 +17,7 @@ body{
     font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
 }
 
-body.write{
-    background-color: #8de1bd;
-}
-
-body.read{
-    background-color: #577a76;
-}
-
-body.scan{
-    background-color: #349Ac3;
-}
-
-body.register{
-    background-color: #44ff22;
-}
-
+/* buttons Style */
 button{
     color: #ffffff;
     border: none;
@@ -44,6 +29,15 @@ button{
     margin-top: 10px;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
+
+#write-file {  background-color: #e74c3c;  }
+#read-file {  background-color: #3498db;  }
+#fire-base {  background-color: #9954bb;  }
+#scan {  background-color: #f39c12;  }
+#write-record {  background-color: #18bc9c;  }
+#discard-record {  background-color: #2c3e50;  }
+
+/* records Style */
 .record{
     margin: 10px;
     border: none;
@@ -55,6 +49,7 @@ button{
     padding-left: 16px;
     font-size: 17px;
     line-height: 1.3333333;
+    text-align: center;
     border-radius: 3px;
 }
 .record .text{
@@ -63,7 +58,6 @@ button{
     line-height: 1.846;
     color: #666666;
     letter-spacing: .1px;
-    width: 75%;
 }
 .record .format{
     background-color: indianred;
@@ -77,18 +71,11 @@ button{
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
-    width: 25%;
 }
 
-#write-file {  background-color: #e74c3c;  }
-#read-file {  background-color: #3498db;  }
-#fire-base {  background-color: #9954bb;  }
-#scan {  background-color: #f39c12;  }
-#write-record {  background-color: #18bc9c;  }
-#discard-record {  background-color: #2c3e50;  }
-
 /* Just for putting in screen */
-#zona-buttons,#zona-record{
+#zona-buttons,
+#zona-record{
     display: inline-block;
 }
 #records-area{
@@ -97,7 +84,7 @@ button{
     border: none;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
-#zona-info{
+#info-area{
     width: 100%;
     background-color: #95a5a6;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
