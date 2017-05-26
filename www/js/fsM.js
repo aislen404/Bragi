@@ -10,7 +10,6 @@ var fsm = {
     writeToFile: function(data) {
         "use strict";
         var fileName = this.what;
-
         data = JSON.stringify(data, null, '\t');
         console.log('writeToFile : \n'+data);
         window.resolveLocalFileSystemURL(this.where, function (directoryEntry) {
@@ -54,7 +53,6 @@ var fsm = {
     },
     readFromFile: function(callback) {
         "use strict";
-
         var fileName = this.what;
         var pathToFile = this.where + fileName;
         console.log('hola --> ' + cordova.file.dataDirectory);

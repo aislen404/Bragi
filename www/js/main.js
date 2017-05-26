@@ -12,10 +12,9 @@ var app={
 
         console.log('init');
 
+        this.readingFile();
         this.initButtons();
         this.initFastClick();
-        this.readingFile();
-
     },
 
     initFastClick: function () {

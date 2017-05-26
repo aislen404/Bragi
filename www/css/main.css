@@ -14,7 +14,7 @@ body{
             color-stop(0.51, #E4E4E4)
     );
     background-attachment:fixed;
-    font-family:'HelveticaNeue-Light', 'HelveticaNeue', Helvetica, Arial, sans-serif;
+    font-family: "SF Pro Text", "SF Pro Icons", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 }
 
 /* buttons Style */
@@ -30,12 +30,15 @@ button{
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 
-#write-file {  background-color: #e74c3c;  }
-#read-file {  background-color: #3498db;  }
-#fire-base {  background-color: #9954bb;  }
-#scan {  background-color: #f39c12;  }
-#write-record {  background-color: #18bc9c;  }
+#write-file {  background-color: rgb(255, 59 ,48);  }
+#read-file {  background-color: rgb(0,122,255);  }
+#fire-base {  background-color: rgb(88,86,214);  }
+#scan {  background-color: rgb(255,149,0);  }
+#write-record {  background-color: rgb(76,217,100);  }
 #discard-record {  background-color: #2c3e50;  }
+
+#TOASIGN {  background-color: rgb(255,204,0);  }
+#TOASIGN_2{  background-color: rgb(90,200,250);  }
 
 /* records Style */
 .record{
@@ -56,11 +59,11 @@ button{
     font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 13px;
     line-height: 1.846;
-    color: #666666;
+    color: #4D4D4D;
     letter-spacing: .1px;
 }
 .record .format{
-    background-color: indianred;
+    background-color: rgb(255,45,85);
     display: inline;
     margin-left: 5px;
     padding: .2em .6em .3em;
