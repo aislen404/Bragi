@@ -32,13 +32,14 @@ button{
 
 #write-file {  background-color: rgb(255, 59 ,48);  }
 #read-file {  background-color: rgb(0,122,255);  }
-#fire-base {  background-color: rgb(88,86,214);  }
+#fire-base {  background-color: #4d4d4d;  }
 #scan {  background-color: rgb(255,149,0);  }
 #write-record {  background-color: rgb(76,217,100);  }
 #discard-record {  background-color: #2c3e50;  }
 
 #TOASIGN {  background-color: rgb(255,204,0);  }
 #TOASIGN_2{  background-color: rgb(90,200,250);  }
+#TOASIGN_3 {  background-color: rgb(88,86,214);  }
 
 /* records Style */
 .record{

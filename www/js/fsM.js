@@ -5,8 +5,13 @@
  */
 
 var fsm = {
-    where : cordova.file.dataDirectory,
-    what : 'data.json',
+    initialization: function(){
+        "use strict";
+
+        this.where = cordova.file.dataDirectory;
+        this.what = 'data.json';
+        console.log('fsm.initialization --> ' + this.where);
+    },
     writeToFile: function(data) {
         "use strict";
         var fileName = this.what;
@@ -53,8 +58,9 @@ var fsm = {
     },
     readFromFile: function(callback) {
         "use strict";
-        var fileName = this.what;
-        var pathToFile = this.where + fileName;
+
+        var fileName = fsm.what;
+        var pathToFile = fsm.where + fileName;
         console.log('hola --> ' + cordova.file.dataDirectory);
         window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
             fileEntry.file(function (file) {

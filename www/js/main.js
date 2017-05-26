@@ -6,15 +6,16 @@
 var app={
     blank_model : [],
     provi : [],
+    model : [],
 
     init: function(){
         "use strict";
 
         console.log('init');
 
-        this.readingFile();
         this.initButtons();
         this.initFastClick();
+        this.initFile();
     },
 
     initFastClick: function () {
@@ -94,16 +95,22 @@ var app={
         app.paintRecords();
     },
 
+    initFile: function () {
+        fsm.initialization();
+    },
+
     readingFile: function () {  //TODO: to Delete
         "use strict";
 
         console.log('readingFile');
 
-        fsm.readFromFile( function (data) {
+        fsm.readFromFile(function (data) {
             app.model=data;
             app.reportingArea('Data Loaded !!');
             app.paintRecords();
         });
+
+
     },
 
     fireBaseSend: function () {
@@ -121,7 +128,7 @@ var app={
         bragi.activeBarScan(function(data){
             app.provi= data ;
 
-            if(app.model.find(findCODE)){
+            if(app.model != '' && app.model.find(findCODE)){
                 app.reportingArea('referencia duplicada');
                 app.reportingRecords();
             }else{
@@ -173,6 +180,7 @@ var app={
         for (var i in reg) {
             theHTML.push('<div id="record-'+i+'" class="record"><span class="text">'+reg[i].text+'</span><span class="format">'+reg[i].format+'</span></div>');
         }
+
         zona.innerHTML = theHTML.join("  ");
     }
 
