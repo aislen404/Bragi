@@ -8,16 +8,17 @@ var fsm = {
     initialization: function(){
         "use strict";
 
-        this.where = cordova.file.dataDirectory;
-        this.what = 'data.json';
-        console.log('fsm.initialization --> ' + this.where);
+        fsm.where = cordova.file.dataDirectory;
+        fsm.what = 'data.json';
+        fsm.fullURI = fsm.where+''+fsm.what;
+        console.log('fsm.initialization --> ' + fsm.where);
     },
     writeToFile: function(data) {
         "use strict";
-        var fileName = this.what;
+        var fileName = fsm.what;
         data = JSON.stringify(data, null, '\t');
         console.log('writeToFile : \n'+data);
-        window.resolveLocalFileSystemURL(this.where, function (directoryEntry) {
+        window.resolveLocalFileSystemURL(fsm.where, function (directoryEntry) {
             directoryEntry.getFile(fileName, { create: true }, function (fileEntry) {
                 fileEntry.createWriter(function (fileWriter) {
                     fileWriter.onwriteend = function (e) {
@@ -60,7 +61,7 @@ var fsm = {
         "use strict";
 
         var fileName = fsm.what;
-        var pathToFile = fsm.where + fileName;
+        var pathToFile = fsm.where +''+ fileName;
         console.log('hola --> ' + cordova.file.dataDirectory);
         window.resolveLocalFileSystemURL(pathToFile, function (fileEntry) {
             fileEntry.file(function (file) {

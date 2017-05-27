@@ -9,17 +9,16 @@ var app={
     model : [],
 
     init: function(){
-        "use strict";
+        'use strict';
 
         console.log('init');
 
         this.initButtons();
         this.initFastClick();
-        this.initFile();
     },
 
     initFastClick: function () {
-        "use strict";
+        'use strict';
 
         console.log('initFastClick');
 
@@ -27,27 +26,35 @@ var app={
     },
 
     initButtons: function () {
-        "use strict";
+        'use strict';
 
         console.log('initButtons');
 
         var buttonWriteFile = document.querySelector('#write-file');
         var buttonReadFile = document.querySelector('#read-file');
-        var buttonFireBase = document.querySelector('#fire-base');
+        var buttonCloudBase = document.querySelector('#cloud-base');
         var buttonScan = document.querySelector('#scan');
         var buttonWriteRecord = document.querySelector('#write-record');
         var buttonDiscardRecord = document.querySelector('#discard-record');
 
         buttonWriteFile.addEventListener('click',this.writingFile,false);
         buttonReadFile.addEventListener('click',this.readingFile,false);
-        buttonFireBase.addEventListener('click',this.fireBaseSend,false);
         buttonScan.addEventListener('click',this.scanning,false);
         buttonWriteRecord.addEventListener('click',this.writeRecord,false);
         buttonDiscardRecord.addEventListener('click',this.discardRecord,false);
+
+        if(bragi.CAPABILITY_Wifi) {
+            console.log('WIFI ENABLE');
+            buttonCloudBase.addEventListener('click', this.cloudBaseSend, false);
+            buttonCloudBase.className = 'active'
+        }else{
+            console.log('bragi.CAPABILITY_Wifi -- > '+bragi.CAPABILITY_Wifi());
+        }
+
     },
 
     reportingArea: function (data) {
-        "use strict";
+        'use strict';
 
         console.log('reportingArea');
 
@@ -57,7 +64,7 @@ var app={
     },
 
     buttonsArea: function(){
-        "use strict";
+        'use strict';
 
         console.log('buttonsArea');
 
@@ -71,7 +78,7 @@ var app={
     },
 
     reportingRecords: function(){
-        "use strict";
+        'use strict';
 
         console.log('reportingRecords');
 
@@ -85,9 +92,10 @@ var app={
     },
 
     writingFile: function(){    //TODO: to Delete
-        "use strict";
+        'use strict';
 
         console.log('writingFile');
+        fsm.initialization();
 
         fsm.writeToFile(app.blank_model);
         app.reportingArea('writed out !!');
@@ -95,14 +103,11 @@ var app={
         app.paintRecords();
     },
 
-    initFile: function () {
-        fsm.initialization();
-    },
-
     readingFile: function () {  //TODO: to Delete
-        "use strict";
+        'use strict';
 
         console.log('readingFile');
+        fsm.initialization();
 
         fsm.readFromFile(function (data) {
             app.model=data;
@@ -113,14 +118,50 @@ var app={
 
     },
 
-    fireBaseSend: function () {
-        "use strict";
+    cloudBaseSend: function () {
+        'use strict';
 
-        console.log('fireBaseSend');
+        console.log('cloudBaseSend');
+
+        var path = fsm.fullURI;
+        var name = fsm.what;
+        var ft = new FileTransfer();
+
+        var options = new FileUploadOptions();
+        options.fileKey = 'file';
+        options.fileName = name;
+        options.mimeType = 'text/plain';
+
+        var params = new Object();
+        params.fullpath = path;
+        params.name = name;
+
+        options.params = params;
+        options.chunkedMode = false;
+
+        console.log('FileTransfer --> '+path);
+
+        ft.upload( path, 'http://api.jardivalla.com/',
+            function(r) {
+                //upload successful
+
+                console.log("Code = " + r.responseCode);
+                console.log("Response = " + r.response);
+                console.log("Sent = " + r.bytesSent);
+            },
+            function(e) {
+                //upload unsuccessful, error occured while upload.
+                console.log("An error has occurred: Code = " + e.code);
+                console.log("upload error source " + e.source);
+                console.log("upload error target " + e.target);
+            },
+            options
+        );
+
     },
 
     scanning: function () {
-        "use strict";
+        'use strict';
 
         console.log('scanning');
 
@@ -144,7 +185,7 @@ var app={
     },
 
     writeRecord: function () {
-        "use strict";
+        'use strict';
 
         console.log('writeRecord');
 
@@ -157,7 +198,7 @@ var app={
     },
 
     discardRecord: function () {
-        "use strict";
+        'use strict';
 
         console.log('discardRecord');
 
@@ -168,7 +209,7 @@ var app={
     },
 
     paintRecords: function(){
-        "use strict";
+        'use strict';
 
         console.log('paintRecords');
 
@@ -180,15 +221,14 @@ var app={
         for (var i in reg) {
             theHTML.push('<div id="record-'+i+'" class="record"><span class="text">'+reg[i].text+'</span><span class="format">'+reg[i].format+'</span></div>');
         }
-
-        zona.innerHTML = theHTML.join("  ");
+        zona.innerHTML = theHTML.join('  ');
     }
 
 };
 
 if ('addEventListener' in document) {
     document.addEventListener('DOMContentLoaded', function (){
-        "use strict";
+        'use strict';
         app.init();
     }, false);
 }

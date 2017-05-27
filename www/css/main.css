@@ -32,7 +32,7 @@ button{
 
 #write-file {  background-color: rgb(255, 59 ,48);  }
 #read-file {  background-color: rgb(0,122,255);  }
-#fire-base {  background-color: #4d4d4d;  }
+#cloud-base {  background-color: #4d4d4d;  }
 #scan {  background-color: rgb(255,149,0);  }
 #write-record {  background-color: rgb(76,217,100);  }
 #discard-record {  background-color: #2c3e50;  }
@@ -93,7 +93,7 @@ button{
     background-color: #95a5a6;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
     color: #ffffff;
-    margin-top: 10px;
+    margin-top: 30px;
     margin-bottom: 10px;
     min-height: 150px;
     display: block;
