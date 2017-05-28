@@ -15,6 +15,7 @@ var app={
 
         this.initButtons();
         this.initFastClick();
+
     },
 
     initFastClick: function () {
@@ -121,6 +122,7 @@ var app={
     cloudBaseSend: function () {
         'use strict';
 
+        //TODO : put out from here
         console.log('cloudBaseSend');
 
         var path = fsm.fullURI;
@@ -132,7 +134,7 @@ var app={
         options.fileName = name;
         options.mimeType = 'text/plain';
 
-        var params = new Object();
+        var params = {};
         params.fullpath = path;
         params.name = name;
 
@@ -143,17 +145,22 @@ var app={
 
         ft.upload( path, 'http://api.jardivalla.com/',
             function(r) {
-                //upload successful
 
-                console.log("Code = " + r.responseCode);
-                console.log("Response = " + r.response);
-                console.log("Sent = " + r.bytesSent);
+                //upload successful
+                var message = 'Code = ' + r.responseCode + '\n' ;
+                message += + 'Response = ' + r.response +'\n';
+                message += 'Sent = ' + r.bytesSent;
+
+                app.reportingArea(message);
             },
             function(e) {
+
                 //upload unsuccessful, error occured while upload.
-                console.log("An error has occurred: Code = " + e.code);
-                console.log("upload error source " + e.source);
-                console.log("upload error target " + e.target);
+                var message = 'An error has occurred: Code = ' + e.code + '\n';
+                message += 'upload error source ' + e.source + '\n';
+                message += 'upload error target ' + e.target;
+
+                app.reportingArea(message);
             },
             options
         );
@@ -219,7 +226,57 @@ var app={
 
         zona.innerHTML = '';
         for (var i in reg) {
-            theHTML.push('<div id="record-'+i+'" class="record"><span class="text">'+reg[i].text+'</span><span class="format">'+reg[i].format+'</span></div>');
+
+            //TODO: put out from here
+            var isValidIsbn = function(str) {
+
+                var sum,
+                    weight,
+                    digit,
+                    check,
+                    i;
+
+                str = str.replace(/[^0-9X]/gi, '');
+
+                if (str.length != 10 && str.length != 13) {
+                    return false;
+                }
+
+                if (str.length == 13) {
+                    sum = 0;
+                    for (i = 0; i < 12; i++) {
+                        digit = parseInt(str[i]);
+                        if (i % 2 == 1) {
+                            sum += 3*digit;
+                        } else {
+                            sum += digit;
+                        }
+                    }
+                    check = (10 - (sum % 10)) % 10;
+                    return (check == str[str.length-1]);
+                }
+
+                if (str.length == 10) {
+                    weight = 10;
+                    sum = 0;
+                    for (i = 0; i < 9; i++) {
+                        digit = parseInt(str[i]);
+                        sum += weight*digit;
+                        weight--;
+                    }
+                    check = 11 - (sum % 11);
+                    if (check == 10) {
+                        check = 'X';
+                    }
+                    return (check == str[str.length-1].toUpperCase());
+                }
+            }
+
+            if(isValidIsbn(reg[i].text)){
+                theHTML.push('<div id="record-'+i+'" class="record"><span class="text">'+reg[i].text+'</span><span class="format">'+reg[i].format + '</span><span class="ISBN"> ISBN </span></div>');
+            }else{
+                theHTML.push('<div id="record-'+i+'" class="record"><span class="text">'+reg[i].text+'</span><span class="format">'+reg[i].format + '</span></div>');
+            }
         }
         zona.innerHTML = theHTML.join('  ');
     }
