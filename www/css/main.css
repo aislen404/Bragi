@@ -1,3 +1,9 @@
+@font-face {
+    font-family: "economica";
+    src: url(../fonts/economica/Economica-BoldItalic-OTF.otf);
+    font-weight: bold;
+}
+
 body{
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
@@ -46,7 +52,14 @@ button{
 .record{
     margin: 10px;
     border: none;
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+    background-color: #fafafa;
+    color: #131313;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 4px #e7e7e7, 0 6px 1px #d0d0d2;
+    -webkit-box-shadow: 0 4px #e7e7e7, 0 6px 1px #d0d0d2;
+    box-shadow: 0 4px #e7e7e7, 0 6px 1px #d0d0d2;
     display: block;
     padding-top: 10px;
     padding-right: 16px;
@@ -55,41 +68,76 @@ button{
     font-size: 17px;
     line-height: 1.3333333;
     text-align: center;
-    border-radius: 3px;
+}
+.record * {
+    -moz-transition: all 0.15s linear;
+    -o-transition: all 0.15s linear;
+    -webkit-transition: all 0.15s linear;
+    transition: all 0.15s linear;
 }
 .record .text{
-    font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 16px;
-    line-height: 1.846;
+    font-family: "economica";
+    font-size: 24px;
     color: #4D4D4D;
-    letter-spacing: .1px;
+    letter-spacing: 2px;
+    margin-right: 25px;
 }
 .record .format{
     background-color: rgb(255,45,85);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     display: inline;
     margin-left: 5px;
     padding: .2em .6em .3em;
     font-size: 75%;
     font-weight: bold;
-    line-height: 1;
+    line-height: 1px;
     color: #ffffff;
     text-align: center;
     white-space: nowrap;
-    vertical-align: baseline;
+    vertical-align: middle;
 }
-
 .record .ISBN{
     background-color: rgb(88,86,214);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
     display: inline;
     margin-left: 5px;
     padding: .2em .6em .3em;
     font-size: 75%;
     font-weight: bold;
-    line-height: 1;
+    line-height: 1px;
     color: #ffffff;
     text-align: center;
     white-space: nowrap;
-    vertical-align: baseline;
+    vertical-align: middle;
+}
+.record:hover {
+    -moz-box-shadow: 0 4px #e2e2e2, 0 6px 1px #ccccce;
+    -webkit-box-shadow: 0 4px #e2e2e2, 0 6px 1px #ccccce;
+    box-shadow: 0 4px #e2e2e2, 0 6px 1px #ccccce;
+}
+.record:active {
+    top: 1px;
+    -moz-box-shadow: 0 2px #e2e2e2, 0 4px 1px #ccccce;
+    -webkit-box-shadow: 0 2px #e2e2e2, 0 4px 1px #ccccce;
+    box-shadow: 0 2px #e2e2e2, 0 4px 1px #ccccce;
+}
+.records:before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 6px;
+    height: 100%;
+    -moz-border-radius: 10px 0 0 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px 0 0 10px;
+    -moz-transition: all 0.075s linear;
+    -o-transition: all 0.075s linear;
+    -webkit-transition: all 0.075s linear;
+    transition: all 0.075s linear;
 }
 
 /* Just for putting in screen */
@@ -99,12 +147,11 @@ button{
 }
 #records-area{
     overflow: scroll;
-    height: 400px;
+    height: 500px;
     border: none;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
 }
 #info-area{
-    width: 100%;
     background-color: #95a5a6;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
     font-family: Courier;
@@ -112,7 +159,7 @@ button{
     padding: 5px;
     margin-top: 30px;
     margin-bottom: 10px;
-    min-height: 150px;
+    min-height: 100px;
     display: block;
     overflow: scroll;
 }

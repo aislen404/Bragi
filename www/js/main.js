@@ -14,7 +14,12 @@ var app={
         console.log('init');
 
         this.initButtons();
+
+
         this.initFastClick();
+
+
+        this.setupSlip(document.getElementById('records-area'));
 
     },
 
@@ -279,6 +284,32 @@ var app={
             }
         }
         zona.innerHTML = theHTML.join('  ');
+        zona.scrollTop = zona.scrollHeight;
+    },
+    setupSlip: function(list) {
+        list.addEventListener('slip:beforereorder', function(e){
+            if (e.target.classList.indexOf('demo-no-reorder') >= 0) {
+                e.preventDefault();
+            }
+        }, false);
+        list.addEventListener('slip:beforeswipe', function(e){
+            if (e.target.nodeName == 'INPUT' || e.target.classList.indexOf('demo-no-swipe') >= 0) {
+                e.preventDefault();
+            }
+        }, false);
+        list.addEventListener('slip:beforewait', function(e){
+            if (e.target.classList.indexOf('instant') >= 0) e.preventDefault();
+        }, false);
+        list.addEventListener('slip:afterswipe', function(e){
+            e.target.parentNode.appendChild(e.target);
+            console.log('slip:afterswipe --> ' + e.target.id);
+        }, false);
+        list.addEventListener('slip:reorder', function(e){
+            e.target.parentNode.insertBefore(e.target, e.detail.insertBefore);
+            console.log('slip:reorder --> ' + e.target.id + ' and goes to: --> ' +e.detail.insertBefore.id);
+            return false;
+        }, false);
+        return new Slip(list);
     }
 
 };
