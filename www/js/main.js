@@ -286,6 +286,7 @@ var app={
         zona.innerHTML = theHTML.join('  ');
         zona.scrollTop = zona.scrollHeight;
     },
+
     setupSlip: function(list) {
         list.addEventListener('slip:beforereorder', function(e){
             if (e.target.classList.indexOf('demo-no-reorder') >= 0) {
