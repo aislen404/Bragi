@@ -105,4 +105,5 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="To scan barcodes" />
     </plugin>
     <plugin name="cordova-plugin-file" spec="~4.3.2" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.5.1" />
 </widget>
